@@ -4,10 +4,15 @@ using UnityEngine.Events;
 public class EventExample : MonoBehaviour
 {
     public UnityEvent OnMouseDownEvent = new UnityEvent();
+
+    public delegate void working();
+
+    public working workFunc;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        OnMouseDownEvent.AddListener(delegate { Debug.Log("working but a delegate now"); }); 
+        workFunc = delegate { Debug.Log("working but a delegate now"); }; 
+        OnMouseDownEvent.AddListener(workFunc.Invoke); 
     }
 
     private void OnMouseDown()

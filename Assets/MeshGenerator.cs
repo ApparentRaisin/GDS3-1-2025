@@ -8,6 +8,8 @@ public class MeshGenerator : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
+        EventExample.working work;
+        work = delegate { };
         onClickObject.OnMouseDownEvent.AddListener(delegate { GenMesh(); Debug.Log("Plane Spawned"); });
     }
 
