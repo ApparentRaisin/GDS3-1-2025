@@ -18,12 +18,23 @@ public class EditorNPC : Editor
 
     public override void OnInspectorGUI()
     {
-        //serializedObject.Update();
+        serializedObject.Update();
 
-        //name.stringValue = EditorGUILayout.TextField(name.stringValue);
+        name.stringValue = EditorGUILayout.TextField(name.stringValue);
+        for(int i = 0; i < routeArray.arraySize; i++)
+        {
+            Vector3 currentRoutePosition = routeArray.GetArrayElementAtIndex(i).vector3Value;
+            currentRoutePosition = EditorGUILayout.Vector3Field(i.ToString(), currentRoutePosition);
+            routeArray.GetArrayElementAtIndex(i).vector3Value = currentRoutePosition;
+        }
+
+        if(GUILayout.Button("Add Point"))
+        {
+            routeArray.arraySize += 1;
+        }
         //base.DrawDefaultInspector();
 
-        //serializedObject.ApplyModifiedProperties();
+        serializedObject.ApplyModifiedProperties();
     }
 
     private void OnSceneGUI()
